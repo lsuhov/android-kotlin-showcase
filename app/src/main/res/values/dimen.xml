@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <dimen name="article_card_horizontal_padding">10dp</dimen>
+    <dimen name="article_card_vertical_padding">8dp</dimen>
+    <dimen name="article_list_image_size">48dp</dimen>
+    <dimen name="article_list_calendar_size">18dp</dimen>
+    <dimen name="article_list_arrow_size">24dp</dimen>
+</resources>

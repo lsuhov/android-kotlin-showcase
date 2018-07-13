@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewModel"
+            type="com.test.showcase.masterdetailkotlintechnology.articleList.ArticleListItemViewModel"/>
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="2dp"
+        app:cardCornerRadius="4dp"
+        app:contentPaddingLeft="@dimen/article_card_horizontal_padding"
+        app:contentPaddingRight="@dimen/article_card_horizontal_padding"
+        app:contentPaddingTop="@dimen/article_card_vertical_padding"
+        app:contentPaddingBottom="@dimen/article_card_vertical_padding"
+        android:layout_margin="4dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- I would use Glide for downloading images -->
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/articleImage"
+                android:layout_width="@dimen/article_list_image_size"
+                android:layout_height="@dimen/article_list_image_size"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/circle_placeholder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/articleTitleTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{viewModel.title}"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                app:layout_constraintEnd_toStartOf="@+id/nextArrowIcon"
+                app:layout_constraintStart_toEndOf="@+id/articleImage"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Dummy Title Dummy Title Dummy Title Dummy Title"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/authorTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{viewModel.author}"
+                app:layout_constraintBottom_toTopOf="@+id/postDateTextView"
+                app:layout_constraintEnd_toStartOf="@+id/nextArrowIcon"
+                app:layout_constraintStart_toStartOf="@+id/articleTitleTextView"
+                app:layout_constraintTop_toBottomOf="@+id/articleTitleTextView"
+                tools:text="Dummy Author Dummy Author Dummy Author Dummy Author "/>
+
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/calendarIcon"
+                android:layout_width="@dimen/article_list_calendar_size"
+                android:layout_height="@dimen/article_list_calendar_size"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_calendar"
+                app:layout_constraintEnd_toStartOf="@+id/postDateTextView"
+                app:layout_constraintTop_toBottomOf="@+id/authorTextView"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/postDateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@{viewModel.date}"
+                app:layout_constraintEnd_toStartOf="@+id/nextArrowIcon"
+                app:layout_constraintTop_toBottomOf="@+id/authorTextView"
+                tools:text="2017-08-23"/>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/nextArrowIcon"
+                android:layout_width="@dimen/article_list_arrow_size"
+                android:layout_height="@dimen/article_list_arrow_size"
+                android:src="@drawable/ic_next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+
+</layout>
