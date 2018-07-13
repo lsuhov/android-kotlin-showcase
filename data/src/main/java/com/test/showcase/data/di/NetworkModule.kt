@@ -1,6 +1,6 @@
 package com.test.showcase.data.di
 
-import com.jcmsalves.codewarsapi.domain.RxSchedulers
+import com.test.showcase.data.RxSchedulers
 import com.test.showcase.data.ArticleListService
 import com.test.showcase.data.interceptor.AuthInterceptor
 import com.test.showcase.data.BuildConfig

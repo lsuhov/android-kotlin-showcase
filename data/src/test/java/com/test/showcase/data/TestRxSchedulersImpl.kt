@@ -1,4 +1,4 @@
-package com.jcmsalves.codewarsapi.domain
+package com.test.showcase.data
 
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers

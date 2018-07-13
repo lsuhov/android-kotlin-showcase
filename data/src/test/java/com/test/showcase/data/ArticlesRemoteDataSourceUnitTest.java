@@ -1,6 +1,5 @@
 package com.test.showcase.data;
 
-import com.jcmsalves.codewarsapi.domain.TestRxSchedulersImpl;
 import com.test.showcase.data.model.ArticlePreviewModel;
 import com.test.showcase.data.model.ArticlesPreviewModel;
 
@@ -43,7 +42,7 @@ public class ArticlesRemoteDataSourceUnitTest {
     @Test
     public void getListOfArticleSuccess() {
         when(mockArticleListService.getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD))
-                .thenReturn(Single.just(getArticlesPreviewModel()));
+                .thenReturn(Single.just(TestData.getArticlesPreviewModel()));
 
         TestObserver testObserver = remoteDataSource
                 .getListOfArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD)
@@ -74,19 +73,5 @@ public class ArticlesRemoteDataSourceUnitTest {
         verify(mockArticleListService).getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD);
     }
 
-    private ArticlesPreviewModel getArticlesPreviewModel() {
-        List<ArticlePreviewModel> articlePreviewModels = new ArrayList<>();
-        articlePreviewModels.add(getArticlePreviewModel());
-        articlePreviewModels.add(getArticlePreviewModel());
-        articlePreviewModels.add(getArticlePreviewModel());
 
-        return new ArticlesPreviewModel(4, articlePreviewModels);
-    }
-
-    private ArticlePreviewModel getArticlePreviewModel() {
-        return new ArticlePreviewModel("https://www.nytimes.com/2018/07/08/health/world-health-breastfeeding-ecuador-trump.html",
-                "Opposition to Breast-Feeding Resolution by U.S. Stuns World Health Officials",
-                "2018-07-08",
-                "By ANDREW JACOBS");
-    }
 }
