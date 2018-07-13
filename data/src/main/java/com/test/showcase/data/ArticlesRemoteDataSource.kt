@@ -4,7 +4,7 @@ import com.test.showcase.data.model.ArticlePreviewModel
 import io.reactivex.Single
 import javax.inject.Inject
 
-public class ArticlesRemoteDataSource @Inject constructor(private var articleListService: ArticleListService,
+class ArticlesRemoteDataSource @Inject constructor(private var articleListService: ArticleListService,
                                                    private val rxSchedulers: RxSchedulers) {
 
     fun getListOfArticles(section : String = ArticleListService.DEFAULT_SECTION,
