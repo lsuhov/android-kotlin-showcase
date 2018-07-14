@@ -6,6 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.test.showcase.data.di.NetworkModule;
 import com.test.showcase.data.model.ArticlePreviewModel;
+import com.test.showcase.data.rx.RxSchedulersImpl;
 
 import org.junit.Before;
 import org.junit.Test;

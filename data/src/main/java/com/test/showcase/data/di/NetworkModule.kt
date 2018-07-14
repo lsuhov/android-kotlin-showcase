@@ -1,10 +1,10 @@
 package com.test.showcase.data.di
 
-import com.test.showcase.data.RxSchedulers
+import com.test.showcase.data.rx.RxSchedulers
 import com.test.showcase.data.ArticleListService
 import com.test.showcase.data.interceptor.AuthInterceptor
 import com.test.showcase.data.BuildConfig
-import com.test.showcase.data.RxSchedulersImpl
+import com.test.showcase.data.rx.RxSchedulersImpl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

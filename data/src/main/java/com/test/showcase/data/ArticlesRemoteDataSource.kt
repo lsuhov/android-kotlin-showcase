@@ -1,6 +1,7 @@
 package com.test.showcase.data;
 
 import com.test.showcase.data.model.ArticlePreviewModel
+import com.test.showcase.data.rx.RxSchedulers
 import io.reactivex.Single
 import javax.inject.Inject
 

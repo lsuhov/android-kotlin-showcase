@@ -5,7 +5,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.test.showcase.data.ArticleListService;
 import com.test.showcase.data.ArticlesRemoteDataSource;
-import com.test.showcase.data.RxSchedulersImpl;
+import com.test.showcase.data.rx.RxSchedulersImpl;
 import com.test.showcase.masterdetailkotlintechnology.articleList.ArticleListViewModel;
 
 import org.junit.Before;
