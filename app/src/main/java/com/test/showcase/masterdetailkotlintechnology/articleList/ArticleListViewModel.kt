@@ -15,7 +15,7 @@ class ArticleListViewModel @Inject constructor(private val articlesRemoteDataSou
     val articleList = MutableLiveData<List<ArticlePreviewModel>>()
     val articleSections = ArticleListService.SECTIONS
 
-    private var currentArticleSection: String = ArticleListService.DEFAULT_SECTION
+    var currentArticleSection: String = ArticleListService.DEFAULT_SECTION
 
     init {
         articleList.value = ArrayList()
@@ -43,6 +43,10 @@ class ArticleListViewModel @Inject constructor(private val articlesRemoteDataSou
     }
 
     fun setArticleSectionPosition(position: Int) {
+        if (position >= ArticleListService.SECTIONS.size) {
+            return
+        }
+
         val newArticleSection = ArticleListService.SECTIONS[position]
         if (newArticleSection == currentArticleSection) {
             return

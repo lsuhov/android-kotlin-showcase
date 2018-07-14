@@ -46,9 +46,8 @@ public class ArticleListViewModelInstrumentedTest {
         Instrumentation instrumentation = getInstrumentation();
 
 
-        instrumentation.runOnMainSync(() -> {
-            viewModel.set(new ArticleListViewModel(mockArticlesRemoteDataSource));
-        });
+        instrumentation.runOnMainSync(() ->
+                viewModel.set(new ArticleListViewModel(mockArticlesRemoteDataSource)));
 
         instrumentation.waitForIdleSync();
 
@@ -59,5 +58,72 @@ public class ArticleListViewModelInstrumentedTest {
 
         assertTrue("size of articles list is different",
                 viewModel.get().getArticleList().getValue().size() == TestData.getListOfArticlePreviewModel().size());
+    }
+
+
+    @Test
+    public void toggleFilterArea() {
+        Mockito.when(mockArticleListService.getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD))
+                .thenReturn(Single.just(TestData.getArticlesPreviewModel()));
+
+        AtomicReference<ArticleListViewModel> viewModel = new AtomicReference<>();
+        Instrumentation instrumentation = getInstrumentation();
+
+
+        instrumentation.runOnMainSync(() -> {
+            viewModel.set(new ArticleListViewModel(mockArticlesRemoteDataSource));
+
+            viewModel.get().toggleFilterZoneVisibility();
+        });
+        instrumentation.waitForIdleSync();
+
+
+        assertTrue(viewModel.get().getFilterZoneIsVisible().get());
+    }
+
+    @Test
+    public void setInvalidSectionPosition() {
+        Mockito.when(mockArticleListService.getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD))
+                .thenReturn(Single.just(TestData.getArticlesPreviewModel()));
+
+        AtomicReference<ArticleListViewModel> viewModel = new AtomicReference<>();
+        Instrumentation instrumentation = getInstrumentation();
+
+
+        instrumentation.runOnMainSync(() -> {
+            viewModel.set(new ArticleListViewModel(mockArticlesRemoteDataSource));
+
+            viewModel.get().setArticleSectionPosition(4);
+        });
+        instrumentation.waitForIdleSync();
+
+
+        assertTrue(viewModel.get().getCurrentArticleSection().equals(ArticleListService.DEFAULT_SECTION));
+    }
+
+    @Test
+    public void setValidSectionPosition() {
+        int sectionPosition = 3;
+        String section = ArticleListService.Companion.getSECTIONS().get(sectionPosition);
+
+        Mockito.when(mockArticleListService.getArticles(section, ArticleListService.DEFAULT_PERIOD))
+                .thenReturn(Single.just(TestData.getArticlesPreviewModel()));
+
+        Mockito.when(mockArticleListService.getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD))
+                .thenReturn(Single.just(TestData.getArticlesPreviewModel()));
+
+        AtomicReference<ArticleListViewModel> viewModel = new AtomicReference<>();
+        Instrumentation instrumentation = getInstrumentation();
+
+
+        instrumentation.runOnMainSync(() -> {
+            viewModel.set(new ArticleListViewModel(mockArticlesRemoteDataSource));
+
+            viewModel.get().setArticleSectionPosition(sectionPosition);
+        });
+        instrumentation.waitForIdleSync();
+
+
+        assertTrue(viewModel.get().getCurrentArticleSection().equals(section));
     }
 }
