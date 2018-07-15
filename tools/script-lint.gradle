@@ -1,7 +1,7 @@
 android {
     lintOptions {
         lintConfig file("$project.rootDir/tools/rules-lint.xml")
-        htmlOutput file("$project.rootDir/build/outputs/lint/$project.name-lint.html")
+        htmlOutput file("$project.rootDir/build/reports/lint/$project.name-lint.html")
         warningsAsErrors false
         xmlReport false
     }

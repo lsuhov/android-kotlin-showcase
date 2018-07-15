@@ -16,27 +16,10 @@
 default_platform(:android)
 
 platform :android do
-  desc "Runs all the tests"
-  lane :test do |options|
+  desc "Runs all tests with code coverage"
+  lane :test do
 
-    testType = "all"
-
-    if options[:testType]
-      testType = options[:testType]
-    end
-
-    puts "Building with testType argument = " + testType
-
-    gradle(task: "clean")
-
-    if testType == "all"
-      gradle(task: "testDebugUnitTest mergeAndroidReports --continue")
-    elsif testType == "unitTest"
-      gradle(task: "testDebugUnitTest --continue")
-    elsif testType == "androidTest"
-      gradle(task: "connectedAndroidTest mergeAndroidReports --continue")
-    end
-
+    gradle(task: "clean jacocoTestReport mergeAndroidReports --continue")
   end
 
   desc "Build project"

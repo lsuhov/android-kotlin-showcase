@@ -3,10 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: "$project.rootDir/tools/script-lint.gradle"
+apply from: "$project.rootDir/tools/script-jacoco.gradle"
 
 android {
     compileSdkVersion 27
-
 
 
     defaultConfig {
@@ -22,6 +22,7 @@ android {
     buildTypes {
         debug {
             buildConfigField 'String', "ApiKey", MASTER_DETAIL_APP_API_KEY_NYT_MOST_VIEWED
+            testCoverageEnabled true
         }
 
         release {

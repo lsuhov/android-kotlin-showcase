@@ -25,17 +25,17 @@ Run `bundle exec fastlane` for faster execution.
 * Build debug apk
   * `fastlane build`
 
-* Tests
-  * `fastlane test` - execute unit tests and the instrumented tests
-  * `fastlane test testType:androidTest` - execute instrumented tests
-  * `fastlane test testType:unitTest` - execute unit tests
+* Tests with code coverage
+  * `fastlane test`
 
-  The instrumented test reports are merged in project build/reports/androidTests
+  The instrumented test reports are merged in /build/reports/androidTests.
+  The unit test reports are found in /$module/build/reports/tests.
+  The code coverage reports are found in /build/reports/javacoco.
 
 * Lint checks
   * `fastlane lint`
 
-  All reports are saved in /build/outputs/lint
+  All reports are saved in /build/reports/lint
 
 Relevant libraries used
 -----------------------
