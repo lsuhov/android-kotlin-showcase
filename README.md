@@ -20,12 +20,15 @@ MASTER_DETAIL_APP_API_KEY_NYT_MOST_VIEWED="YOUR API KEY"
 More info in this link: https://medium.com/code-better/hiding-api-keys-from-your-android-repository-b23f5598b906
 
 
-This project uses the Gradle build system. To build this project, use the
-`gradlew build` command or use "Import Project" in Android Studio.
+For command line actions, you have the option of using a fastlane script.
+* Build debug apk
+  * `fastlane build`
+  * `bundle exec fastlane build` - for faster execution
 
-There are two Gradle tasks for testing the project:
-* `connectedAndroidTest` - for running Espresso on a connected device
-* `test` - for running unit tests
+* Tests - The instrumented test reports are merged in project build
+  * `fastlane test` - execute unit tests and the instrumented tests
+  * `fastlane test testType:androidTest` - execute instrumented tests
+  * `fastlane test testType:unitTest` - execute unit tests
 
 
 Relevant libraries used
