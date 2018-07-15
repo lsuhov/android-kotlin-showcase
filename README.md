@@ -21,15 +21,21 @@ More info in this link: https://medium.com/code-better/hiding-api-keys-from-your
 
 
 For command line actions, you have the option of using a fastlane script.
+Run `bundle exec fastlane` for faster execution.
 * Build debug apk
   * `fastlane build`
-  * `bundle exec fastlane build` - for faster execution
 
-* Tests - The instrumented test reports are merged in project build
+* Tests
   * `fastlane test` - execute unit tests and the instrumented tests
   * `fastlane test testType:androidTest` - execute instrumented tests
   * `fastlane test testType:unitTest` - execute unit tests
 
+  The instrumented test reports are merged in project build/reports/androidTests
+
+* Lint checks
+  * `fastlane lint`
+
+  All reports are saved in /build/outputs/lint
 
 Relevant libraries used
 -----------------------
