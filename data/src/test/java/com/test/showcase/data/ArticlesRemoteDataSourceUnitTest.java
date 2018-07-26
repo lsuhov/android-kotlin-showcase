@@ -42,7 +42,7 @@ public class ArticlesRemoteDataSourceUnitTest {
     @Test
     public void getListOfArticleSuccess() {
         when(mockArticleListService.getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD))
-                .thenReturn(Single.just(TestData.getArticlesPreviewModel()));
+                .thenReturn(Single.just(TestData.Companion.getArticlesPreviewModel()));
 
         TestObserver testObserver = remoteDataSource
                 .getListOfArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD)
