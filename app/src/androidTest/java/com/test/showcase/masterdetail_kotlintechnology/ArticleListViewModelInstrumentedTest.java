@@ -40,7 +40,7 @@ public class ArticleListViewModelInstrumentedTest {
     @Test
     public void initialLoadIsSetAsExpected() {
         Mockito.when(mockArticleListService.getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD))
-                .thenReturn(Single.just(TestData.getArticlesPreviewModel()));
+                .thenReturn(Single.just(TestData.Companion.getArticlesPreviewModel()));
 
         AtomicReference<ArticleListViewModel> viewModel = new AtomicReference<>();
         Instrumentation instrumentation = getInstrumentation();
@@ -57,14 +57,14 @@ public class ArticleListViewModelInstrumentedTest {
         assertTrue(!viewModel.get().isLoading().get());
 
         assertTrue("size of articles list is different",
-                viewModel.get().getArticleList().getValue().size() == TestData.getListOfArticlePreviewModel().size());
+                viewModel.get().getArticleList().getValue().size() == TestData.Companion.getListOfArticlePreviewModel().size());
     }
 
 
     @Test
     public void toggleFilterArea() {
         Mockito.when(mockArticleListService.getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD))
-                .thenReturn(Single.just(TestData.getArticlesPreviewModel()));
+                .thenReturn(Single.just(TestData.Companion.getArticlesPreviewModel()));
 
         AtomicReference<ArticleListViewModel> viewModel = new AtomicReference<>();
         Instrumentation instrumentation = getInstrumentation();
@@ -84,7 +84,7 @@ public class ArticleListViewModelInstrumentedTest {
     @Test
     public void setInvalidSectionPosition() {
         Mockito.when(mockArticleListService.getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD))
-                .thenReturn(Single.just(TestData.getArticlesPreviewModel()));
+                .thenReturn(Single.just(TestData.Companion.getArticlesPreviewModel()));
 
         AtomicReference<ArticleListViewModel> viewModel = new AtomicReference<>();
         Instrumentation instrumentation = getInstrumentation();
@@ -107,10 +107,10 @@ public class ArticleListViewModelInstrumentedTest {
         String section = ArticleListService.Companion.getSECTIONS().get(sectionPosition);
 
         Mockito.when(mockArticleListService.getArticles(section, ArticleListService.DEFAULT_PERIOD))
-                .thenReturn(Single.just(TestData.getArticlesPreviewModel()));
+                .thenReturn(Single.just(TestData.Companion.getArticlesPreviewModel()));
 
         Mockito.when(mockArticleListService.getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD))
-                .thenReturn(Single.just(TestData.getArticlesPreviewModel()));
+                .thenReturn(Single.just(TestData.Companion.getArticlesPreviewModel()));
 
         AtomicReference<ArticleListViewModel> viewModel = new AtomicReference<>();
         Instrumentation instrumentation = getInstrumentation();
