@@ -14,7 +14,7 @@ and generate an API Key. Besides the Name and Email address, in the Website
 field I've put the package name of the app which is com.test.showcase.masterdetail_kotlintechnology.
 Also in the API section please select 'Most Popular API'.
 
-After you receive the apiKey, you'll have to add it to the build.gradle
+After you receive the apiKey, you'll have to add it to the gradle.properties
 from your home directory, in the following format:
 MASTER_DETAIL_APP_API_KEY_NYT_MOST_VIEWED="YOUR API KEY"
 More info in this link: https://medium.com/code-better/hiding-api-keys-from-your-android-repository-b23f5598b906
