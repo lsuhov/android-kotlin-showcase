@@ -5,7 +5,7 @@ import com.test.showcase.data.model.ArticlesPreviewModel
 
 import java.util.ArrayList
 
-class TestData {
+class ArticlePreviewModelStub {
     companion object {
         fun getArticlesPreviewModel(): ArticlesPreviewModel {
 

@@ -32,7 +32,7 @@ class ArticlesRemoteDataSourceUnitTest {
     @Test
     fun getListOfArticleSuccess() {
         whenever(mockArticleListService.getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD))
-                .thenReturn(Single.just(TestData.getArticlesPreviewModel()))
+                .thenReturn(Single.just(ArticlePreviewModelStub.getArticlesPreviewModel()))
 
         val testObserver = remoteDataSource
                 .getListOfArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD)
