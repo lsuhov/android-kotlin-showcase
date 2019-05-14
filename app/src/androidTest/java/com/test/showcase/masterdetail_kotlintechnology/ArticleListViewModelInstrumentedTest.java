@@ -20,6 +20,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import io.reactivex.Single;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
@@ -29,12 +31,14 @@ public class ArticleListViewModelInstrumentedTest {
     private ArticleListService mockArticleListService;
 
     private ArticlesRemoteDataSource mockArticlesRemoteDataSource;
+    private Instrumentation instrumentation;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
 
         mockArticlesRemoteDataSource = new ArticlesRemoteDataSource(mockArticleListService, new RxSchedulersImpl());
+        instrumentation = getInstrumentation();
     }
 
     @Test
@@ -43,32 +47,39 @@ public class ArticleListViewModelInstrumentedTest {
                 .thenReturn(Single.just(TestData.Companion.getArticlesPreviewModel()));
 
         AtomicReference<ArticleListViewModel> viewModel = new AtomicReference<>();
-        Instrumentation instrumentation = getInstrumentation();
-
 
         instrumentation.runOnMainSync(() ->
                 viewModel.set(new ArticleListViewModel(mockArticlesRemoteDataSource)));
-
         instrumentation.waitForIdleSync();
 
 
         Mockito.verify(mockArticleListService).getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD);
 
-        assertTrue(!viewModel.get().isLoading().get());
+        assertFalse(viewModel.get().isLoading().get());
 
-        assertTrue("size of articles list is different",
-                viewModel.get().getArticleList().getValue().size() == TestData.Companion.getListOfArticlePreviewModel().size());
+        assertEquals("size of articles list is different", viewModel.get().getArticleList().getValue().size(), TestData.Companion.getListOfArticlePreviewModel().size());
     }
 
+    @Test
+    public void loadDataException() {
+        Mockito.when(mockArticleListService.getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD))
+                .thenReturn(Single.error(new Throwable()));
+
+        AtomicReference<ArticleListViewModel> viewModel = new AtomicReference<>();
+
+        instrumentation.runOnMainSync(() ->
+                viewModel.set(new ArticleListViewModel(mockArticlesRemoteDataSource)));
+        instrumentation.waitForIdleSync();
+
+        Mockito.verify(mockArticleListService).getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD);
+        assertFalse(viewModel.get().isLoading().get());
+    }
 
     @Test
     public void toggleFilterArea() {
         Mockito.when(mockArticleListService.getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD))
                 .thenReturn(Single.just(TestData.Companion.getArticlesPreviewModel()));
-
         AtomicReference<ArticleListViewModel> viewModel = new AtomicReference<>();
-        Instrumentation instrumentation = getInstrumentation();
-
 
         instrumentation.runOnMainSync(() -> {
             viewModel.set(new ArticleListViewModel(mockArticlesRemoteDataSource));
@@ -76,7 +87,6 @@ public class ArticleListViewModelInstrumentedTest {
             viewModel.get().toggleFilterZoneVisibility();
         });
         instrumentation.waitForIdleSync();
-
 
         assertTrue(viewModel.get().getFilterZoneIsVisible().get());
     }
@@ -87,8 +97,6 @@ public class ArticleListViewModelInstrumentedTest {
                 .thenReturn(Single.just(TestData.Companion.getArticlesPreviewModel()));
 
         AtomicReference<ArticleListViewModel> viewModel = new AtomicReference<>();
-        Instrumentation instrumentation = getInstrumentation();
-
 
         instrumentation.runOnMainSync(() -> {
             viewModel.set(new ArticleListViewModel(mockArticlesRemoteDataSource));
@@ -98,7 +106,7 @@ public class ArticleListViewModelInstrumentedTest {
         instrumentation.waitForIdleSync();
 
 
-        assertTrue(viewModel.get().getCurrentArticleSection().equals(ArticleListService.DEFAULT_SECTION));
+        assertEquals(viewModel.get().getCurrentArticleSection(), ArticleListService.DEFAULT_SECTION);
     }
 
     @Test
@@ -113,8 +121,6 @@ public class ArticleListViewModelInstrumentedTest {
                 .thenReturn(Single.just(TestData.Companion.getArticlesPreviewModel()));
 
         AtomicReference<ArticleListViewModel> viewModel = new AtomicReference<>();
-        Instrumentation instrumentation = getInstrumentation();
-
 
         instrumentation.runOnMainSync(() -> {
             viewModel.set(new ArticleListViewModel(mockArticlesRemoteDataSource));
@@ -124,6 +130,6 @@ public class ArticleListViewModelInstrumentedTest {
         instrumentation.waitForIdleSync();
 
 
-        assertTrue(viewModel.get().getCurrentArticleSection().equals(section));
+        assertEquals(viewModel.get().getCurrentArticleSection(), section);
     }
 }

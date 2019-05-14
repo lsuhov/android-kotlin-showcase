@@ -6,6 +6,7 @@ import android.databinding.ObservableBoolean
 import com.test.showcase.data.ArticleListService
 import com.test.showcase.data.ArticlesRemoteDataSource
 import com.test.showcase.data.model.ArticlePreviewModel
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class ArticleListViewModel @Inject constructor(private val articlesRemoteDataSource: ArticlesRemoteDataSource) : ViewModel() {
@@ -14,6 +15,7 @@ class ArticleListViewModel @Inject constructor(private val articlesRemoteDataSou
     val filterZoneIsVisible = ObservableBoolean(false)
     val articleList = MutableLiveData<List<ArticlePreviewModel>>()
     val articleSections = ArticleListService.SECTIONS
+    private val compositeDisposable = CompositeDisposable()
 
     var currentArticleSection: String = ArticleListService.DEFAULT_SECTION
 
@@ -28,14 +30,14 @@ class ArticleListViewModel @Inject constructor(private val articlesRemoteDataSou
         isLoading.set(true)
 
         articlesRemoteDataSource.getListOfArticles(section, period)
-                .doOnSuccess {
-                    articleList.value = it
+                .subscribe(
+                        { articles ->
+                                articleList.value = articles
+                                isLoading.set(false)
+                        }
+                        , {
                     isLoading.set(false)
-                }
-                .doOnError{
-                    isLoading.set(false)
-                }
-                .subscribe()
+                }).also { compositeDisposable.add(it) }
     }
 
     fun toggleFilterZoneVisibility() {
@@ -59,6 +61,7 @@ class ArticleListViewModel @Inject constructor(private val articlesRemoteDataSou
 
     override fun onCleared() {
         articleList.value = null
+        compositeDisposable.dispose()
 
         super.onCleared()
     }

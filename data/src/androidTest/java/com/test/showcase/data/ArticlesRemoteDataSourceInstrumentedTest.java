@@ -1,7 +1,5 @@
 package com.test.showcase.data;
 
-import android.content.Context;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.test.showcase.data.di.NetworkModule;
@@ -17,7 +15,8 @@ import java.util.List;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -28,14 +27,6 @@ import static org.junit.Assert.*;
 public class ArticlesRemoteDataSourceInstrumentedTest {
 
     private ArticlesRemoteDataSource remoteDataSource;
-
-    @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
-
-        assertEquals("com.test.showcase.data.test", appContext.getPackageName());
-    }
 
     @Before
     public void setup() {
@@ -63,7 +54,7 @@ public class ArticlesRemoteDataSourceInstrumentedTest {
                 .getListOfArticles("test", ArticleListService.DEFAULT_PERIOD)
                 .blockingGet();
 
-        assertTrue(list.size() == 0);
+        assertEquals(0, list.size());
     }
 
     @Test
@@ -74,7 +65,7 @@ public class ArticlesRemoteDataSourceInstrumentedTest {
                     .getListOfArticles(ArticleListService.DEFAULT_SECTION, "test")
                     .blockingGet();
 
-            assertTrue(list.size() == 0);
+            assertEquals(0, list.size());
         } catch (Exception e) {
             assertTrue(true);
         }
