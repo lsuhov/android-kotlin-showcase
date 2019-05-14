@@ -55,7 +55,7 @@ public class ArticleListViewModelInstrumentedTest {
 
         Mockito.verify(mockArticleListService).getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD);
 
-        assertFalse(viewModel.get().isLoading().get());
+        assertFalse(viewModel.get().isLoading().getValue());
 
         assertEquals("size of articles list is different", viewModel.get().getArticleList().getValue().size(), TestData.Companion.getListOfArticlePreviewModel().size());
     }
@@ -72,7 +72,7 @@ public class ArticleListViewModelInstrumentedTest {
         instrumentation.waitForIdleSync();
 
         Mockito.verify(mockArticleListService).getArticles(ArticleListService.DEFAULT_SECTION, ArticleListService.DEFAULT_PERIOD);
-        assertFalse(viewModel.get().isLoading().get());
+        assertFalse(viewModel.get().isLoading().getValue());
     }
 
     @Test
@@ -88,7 +88,7 @@ public class ArticleListViewModelInstrumentedTest {
         });
         instrumentation.waitForIdleSync();
 
-        assertTrue(viewModel.get().getFilterZoneIsVisible().get());
+        assertTrue(viewModel.get().getFilterZoneIsVisible().getValue());
     }
 
     @Test

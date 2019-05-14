@@ -11,8 +11,8 @@ import javax.inject.Inject
 
 class ArticleListViewModel @Inject constructor(private val articlesRemoteDataSource: ArticlesRemoteDataSource) : ViewModel() {
 
-    val isLoading = ObservableBoolean(false)
-    val filterZoneIsVisible = ObservableBoolean(false)
+    val isLoading = MutableLiveData<Boolean>()
+    val filterZoneIsVisible = MutableLiveData<Boolean>()
     val articleList = MutableLiveData<List<ArticlePreviewModel>>()
     val articleSections = ArticleListService.SECTIONS
     private val compositeDisposable = CompositeDisposable()
@@ -21,27 +21,28 @@ class ArticleListViewModel @Inject constructor(private val articlesRemoteDataSou
 
     init {
         articleList.value = ArrayList()
+        filterZoneIsVisible.value = false
 
         loadData(currentArticleSection)
     }
 
     private fun loadData(section: String = ArticleListService.DEFAULT_SECTION,
                          period: String = ArticleListService.DEFAULT_PERIOD) {
-        isLoading.set(true)
+        isLoading.value = true
 
         articlesRemoteDataSource.getListOfArticles(section, period)
                 .subscribe(
                         { articles ->
                                 articleList.value = articles
-                                isLoading.set(false)
+                                isLoading.value = false
                         }
                         , {
-                    isLoading.set(false)
+                    isLoading.value = false
                 }).also { compositeDisposable.add(it) }
     }
 
     fun toggleFilterZoneVisibility() {
-        filterZoneIsVisible.set(!filterZoneIsVisible.get())
+        filterZoneIsVisible.value = filterZoneIsVisible.value?.not()
     }
 
     fun setArticleSectionPosition(position: Int) {

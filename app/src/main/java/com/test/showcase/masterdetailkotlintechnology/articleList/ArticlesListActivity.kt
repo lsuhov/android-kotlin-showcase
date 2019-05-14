@@ -31,6 +31,7 @@ class ArticlesListActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.articles_list_activity)
+        binding.lifecycleOwner = this
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(ArticleListViewModel::class.java)
