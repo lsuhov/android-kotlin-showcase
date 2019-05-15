@@ -13,7 +13,7 @@
             type="com.test.showcase.masterdetailkotlintechnology.articleList.ArticleListItemViewModel"/>
     </data>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,12 +28,12 @@
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <!-- I would use Glide for downloading images -->
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/articleImage"
                 android:layout_width="@dimen/article_list_image_size"
                 android:layout_height="@dimen/article_list_image_size"
@@ -46,7 +46,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/articleTitleTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Dummy Title Dummy Title Dummy Title Dummy Title"/>
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/authorTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
                 tools:text="Dummy Author Dummy Author Dummy Author Dummy Author "/>
 
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/calendarIcon"
                 android:layout_width="@dimen/article_list_calendar_size"
                 android:layout_height="@dimen/article_list_calendar_size"
@@ -94,7 +94,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/postDateTextView"
                 app:layout_constraintTop_toBottomOf="@+id/authorTextView"/>
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/postDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/authorTextView"
                 tools:text="2017-08-23"/>
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/nextArrowIcon"
                 android:layout_width="@dimen/article_list_arrow_size"
                 android:layout_height="@dimen/article_list_arrow_size"
@@ -114,7 +114,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </layout>

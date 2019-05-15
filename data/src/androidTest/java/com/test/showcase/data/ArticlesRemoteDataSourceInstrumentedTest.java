@@ -1,6 +1,6 @@
 package com.test.showcase.data;
 
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.test.showcase.data.di.NetworkModule;
 import com.test.showcase.data.model.ArticlePreviewModel;

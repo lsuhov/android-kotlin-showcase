@@ -1,17 +1,17 @@
-package com.test.showcase.masterdetail_kotlintechnology
+package com.test.showcase.masterdetailkotlintechnology
 
 import com.test.showcase.data.model.ArticlePreviewModel
 import com.test.showcase.data.model.ArticlesPreviewModel
 import java.util.*
 
-class TestData {
+class ArticlePreviewModelStub {
     companion object {
         fun getArticlesPreviewModel(): ArticlesPreviewModel {
 
             return ArticlesPreviewModel(4, getListOfArticlePreviewModel())
         }
 
-        fun getListOfArticlePreviewModel() : MutableList<ArticlePreviewModel> {
+        fun getListOfArticlePreviewModel() : List<ArticlePreviewModel> {
             val articlePreviewModels = ArrayList<ArticlePreviewModel>()
             articlePreviewModels.add(getArticlePreviewModel())
             articlePreviewModels.add(getArticlePreviewModel())

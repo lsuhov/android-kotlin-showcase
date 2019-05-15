@@ -1,6 +1,6 @@
 package com.test.showcase.masterdetailkotlintechnology
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.test.showcase.masterdetailkotlintechnology.articleList.ArticleListViewModel
 import com.test.showcase.masterdetailkotlintechnology.articleList.ArticlesListActivity
 import com.test.showcase.masterdetailkotlintechnology.util.di.ViewModelKey

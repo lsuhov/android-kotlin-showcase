@@ -1,10 +1,10 @@
-package com.test.showcase.masterdetail_kotlintechnology;
+package com.test.showcase.masterdetailkotlintechnology;
 
 import android.app.Activity;
 import android.os.Handler;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
-import android.support.test.espresso.*;
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.test.espresso.*;
 import android.view.View;
 
 import java.lang.ref.WeakReference;

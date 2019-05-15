@@ -1,8 +1,8 @@
 package com.test.showcase.masterdetailkotlintechnology.articleList
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.databinding.ObservableBoolean
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.databinding.ObservableBoolean
 import com.test.showcase.data.ArticleListService
 import com.test.showcase.data.ArticlesRemoteDataSource
 import com.test.showcase.data.model.ArticlePreviewModel

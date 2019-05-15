@@ -8,7 +8,7 @@ import retrofit2.http.Path
 interface ArticleListService {
 
     companion object {
-        const val BASE_URL = "http://api.nytimes.com/svc/mostpopular/v2/mostviewed/"
+        const val BASE_URL = "https://api.nytimes.com/svc/mostpopular/v2/mostviewed/"
         const val DEFAULT_SECTION = "all-sections"
         const val DEFAULT_PERIOD = "7"
         val SECTIONS = arrayListOf(DEFAULT_SECTION, "Arts", "Business Day", "Fashion & Style")
